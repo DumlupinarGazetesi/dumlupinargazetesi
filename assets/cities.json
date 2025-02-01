@@ -53,7 +53,7 @@
   {"value": "kktc", "key": "Kktc", "province_id": null},
   {"value": "kocaeli", "key": "Kocaeli", "province_id": "41"},
   {"value": "konya", "key": "Konya", "province_id": "42"},
-  {"value": "kutahya", "key": "Kütahya", "province_id": "43", "selected": "selected"},
+  {"value": "kutahya", "key": "Kütahya", "province_id": "43"},
   {"value": "malatya", "key": "Malatya", "province_id": "44"},
   {"value": "manisa", "key": "Manisa", "province_id": "45"},
   {"value": "mardin", "key": "Mardin", "province_id": "47"},

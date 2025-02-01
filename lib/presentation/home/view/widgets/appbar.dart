@@ -92,7 +92,7 @@ class HomePageAppbar extends GetView<HomePageController> {
   Widget _buildTabItem(int index) {
     final bool isSelected = controller.selectedTab.value == HomePageTabs.tabs[index];
     return GestureDetector(
-      onTap: () => controller.changeTab(HomePageTabs.tabs[index]),
+      onTap: () => controller.changeTab = HomePageTabs.tabs[index],
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 5),
         alignment: Alignment.center,

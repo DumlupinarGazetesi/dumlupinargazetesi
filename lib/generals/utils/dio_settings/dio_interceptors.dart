@@ -11,7 +11,7 @@ final defaultCacheOptions = CacheOptions(
 );
 
 final PrettyDioLogger prettyDioLogger = PrettyDioLogger(
-  responseBody: false,
+  responseBody: true,
   request: true,
   requestHeader: true,
   error: true,

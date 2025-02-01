@@ -36,10 +36,10 @@ abstract class DumlupinarGazetesiApiClient {
   Future<HttpResponse<ExchangeData>> getExchange();
 
   @GET("${DumlupinarApiAddresses.weather}{cityId}")
-  Future<WeatherResponseModel> getWeather(@Path("cityId") String cityId);
+  Future<HttpResponse<WeatherResponseModel>> getWeather(@Path("cityId") String cityId);
 
   @GET("${DumlupinarApiAddresses.advertisement}/{advertId}")
-  Future<HttpResponse<Advertisement>> getAdvertisement(@Path("advertId") String advertId);
+  Future<HttpResponse<Advertisements>> getAdvertisement(@Path("advertId") String advertId);
 
   @POST(DumlupinarApiAddresses.search)
   Future<SearchResponse> search(@Body() Map<String, dynamic> body);

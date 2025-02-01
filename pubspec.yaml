@@ -56,6 +56,7 @@ dependencies:
   alp_animated_splashscreen: ^0.0.6
   json_annotation: ^4.9.0
   awesome_dialog: ^3.2.1
+  logger: ^2.5.0
 
 
 dev_dependencies:
@@ -89,6 +90,7 @@ flutter:
   assets:
      - assets/icons/
      - assets/images/
+     - assets/cities.json
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

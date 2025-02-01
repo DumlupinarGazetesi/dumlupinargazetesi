@@ -42,8 +42,12 @@ class $AssetsImagesGen {
 class Assets {
   Assets._();
 
+  static const String cities = 'assets/cities.json';
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
+
+  /// List of all assets
+  static List<String> get values => [cities];
 }
 
 class AssetGenImage {
