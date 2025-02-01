@@ -4,7 +4,7 @@ class DumlupinarApiAddresses {
 
   static const String companyInfo = '/info';
   static const String categories = '/categories';
-  static const String categoryEntries = "$categories" /*"/entries?page=1&take=20"*/;
+  static const String categoryEntries = categories;
   static const String entryData = "/entry/";
 
   // top_cover
@@ -30,5 +30,5 @@ class DumlupinarApiAddresses {
   static const String search = "/search";
   static const advertisement = "/advert";
   static const weather = "/service/weather/";
-  static const service = "/service/exchange";
+  static const exchange = "/service/exchange";
 }

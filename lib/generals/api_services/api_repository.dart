@@ -1,11 +1,68 @@
 import 'package:dio/dio.dart';
 import 'package:dumlupinargazetesi/generals/constants/api_addresses.dart';
-import 'package:retrofit/error_logger.dart';
-import 'package:retrofit/http.dart';
-part 'api_repository.g.dart';
+import 'package:dumlupinargazetesi/generals/models/categories/category_entries.dart';
+import 'package:dumlupinargazetesi/generals/models/models.dart';
+import 'package:retrofit/retrofit.dart';
 
+part 'api_repository.g.dart';
 
 @RestApi(baseUrl: DumlupinarApiAddresses.baseUrl)
 abstract class DumlupinarGazetesiApiClient {
   factory DumlupinarGazetesiApiClient(Dio dio, {String baseUrl}) = _DumlupinarGazetesiApiClient;
+
+  @GET(DumlupinarApiAddresses.authors)
+  Future<HttpResponse<Authors>> getAuthors();
+
+  @GET("${DumlupinarApiAddresses.entryData}{entryId}/comments")
+  Future<HttpResponse> getEntryComments(@Path("entryId") String entryId);
+
+  @GET("${DumlupinarApiAddresses.sections}/{section}")
+  Future<HttpResponse<Sections>> getSectionData(@Path("section") String id);
+
+  @GET("${DumlupinarApiAddresses.entryData}{entryId}")
+  Future<HttpResponse<EntryDetail>> getEntryData(@Path("entryId") String entryId);
+
+  @GET("${DumlupinarApiAddresses.categories}/{categoryId}/entries")
+  Future<HttpResponse<CategoryEntries>> getCategoryEntries(
+    @Path("categoryId") String categoryId,
+    @Query("page") int page,
+    @Query("take") int take,
+  );
+
+  @GET(DumlupinarApiAddresses.categories)
+  Future<CategoriesResponse> getCategories();
+
+  @GET(DumlupinarApiAddresses.exchange)
+  Future<HttpResponse<ExchangeData>> getExchange();
+
+  @GET("${DumlupinarApiAddresses.weather}{cityId}")
+  Future<WeatherResponseModel> getWeather(@Path("cityId") String cityId);
+
+  @GET("${DumlupinarApiAddresses.advertisement}/{advertId}")
+  Future<HttpResponse<Advertisement>> getAdvertisement(@Path("advertId") String advertId);
+
+  @POST(DumlupinarApiAddresses.search)
+  Future<SearchResponse> search(@Body() Map<String, dynamic> body);
+
+  @POST(DumlupinarApiAddresses.stats)
+  Future<HttpResponse> sendStats(@Body() Map<String, dynamic> body);
+
+  @GET("${DumlupinarApiAddresses.authors}/{authorId}/entries/{entryId}")
+  Future<HttpResponse<EntryDetail>> getAuthorEntry(
+    @Path("authorId") String authorId,
+    @Path("entryId") String entryId,
+  );
+
+  @GET("${DumlupinarApiAddresses.authors}/{authorId}/entries")
+  Future<HttpResponse<List<EntryDetail>>> getAuthorEntries(
+    @Path("authorId") String authorId,
+    @Query("page") int page,
+    @Query("take") int take,
+  );
+
+  @GET(DumlupinarApiAddresses.todayAuthors)
+  Future<HttpResponse<Authors>> getTodayAuthors();
+
+  @GET(DumlupinarApiAddresses.companyInfo)
+  Future<HttpResponse<InfoResponse>> getCompanyInfo();
 }

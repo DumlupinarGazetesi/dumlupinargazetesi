@@ -16,9 +16,6 @@ class CategoriesResponse extends Status {
 
   factory CategoriesResponse.fromJson(Map<String, dynamic> json) => _$CategoriesResponseFromJson(json);
   Map<String, dynamic> toJson() => _$CategoriesResponseToJson(this);
-
-
 }
-
 
 Object? _readCategories(json, field) => json['data']['categories'];
