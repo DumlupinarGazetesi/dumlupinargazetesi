@@ -1,9 +1,7 @@
 import 'package:dumlupinargazetesi/generals/constants/colors.dart';
 import 'package:dumlupinargazetesi/generals/routers/route_pages.dart';
 import 'package:dumlupinargazetesi/generals/utils/app_bindings.dart';
-import 'package:dumlupinargazetesi/presentation/home/view/screens/homepage.dart';
 import 'package:dumlupinargazetesi/presentation/splash_screen/splash_screen.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,5 +1,5 @@
 import 'package:dumlupinargazetesi/generals/constants/colors.dart';
-import 'package:dumlupinargazetesi/generals/widgets/entries_carousel.dart';
+import 'package:dumlupinargazetesi/generals/widgets/exchange_widget.dart';
 import 'package:dumlupinargazetesi/generals/widgets/weather_widget.dart';
 import 'package:dumlupinargazetesi/presentation/home/controller/homepage_controller.dart';
 import 'package:dumlupinargazetesi/presentation/home/view/widgets/ads_section.dart';
@@ -19,7 +19,6 @@ class _HomepageState extends State<Homepage> {
 
   @override
   void initState() {
-    _controller.getAdvertisements();
     super.initState();
   }
 
@@ -34,7 +33,10 @@ class _HomepageState extends State<Homepage> {
           AdsSection(),
           const SizedBox(height: 10),
           WeatherWidget(),
-          EntriesCarousel(),
+          const SizedBox(height: 10),
+
+          ExchangeWidget(),
+          // EntriesCarousel(),
           Expanded(
             child: TextButton(
                 onPressed: () {

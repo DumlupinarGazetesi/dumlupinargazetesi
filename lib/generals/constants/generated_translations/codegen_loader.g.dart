@@ -22,7 +22,8 @@ class CodegenLoader extends AssetLoader{
   "sports": "Spor",
   "official_ads": "Resmi İlanlar",
   "error_connect": "Bir şeyler yanlış gitti",
-  "poor_connection": "Zayıf internet bağlantısı!"
+  "poor_connection": "Zayıf internet bağlantısı!",
+  "press_back_to_exit": "Çıkmak için tekrar geri tuşuna basın"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"tr_TR": _tr_TR};
 }

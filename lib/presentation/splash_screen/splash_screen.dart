@@ -1,7 +1,7 @@
 import 'package:dumlupinargazetesi/generals/constants/colors.dart';
 import 'package:dumlupinargazetesi/generals/widgets/animated_splash_screen.dart';
 import 'package:dumlupinargazetesi/generated/assets.gen.dart';
-import 'package:dumlupinargazetesi/presentation/home/view/screens/homepage.dart';
+import 'package:dumlupinargazetesi/presentation/main_screen/view/main_screen.dart';
 import 'package:flutter/material.dart';
 
 class Splashscreen extends StatelessWidget {
@@ -16,7 +16,7 @@ class Splashscreen extends StatelessWidget {
       foregroundColor: DumlupinarColors.primaryColor,
       logo: Assets.images.dumlupinarGazetesi.path,
       brandName: 'Dumlupinar Gazetesi',
-      child: Homepage(),
+      child: MainScreen(),
     );
   }
 }

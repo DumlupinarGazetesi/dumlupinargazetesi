@@ -1,5 +1,8 @@
 import 'package:dumlupinargazetesi/generals/constants/colors.dart';
+import 'package:dumlupinargazetesi/generals/models/weather/weather_response_model.dart';
+import 'package:dumlupinargazetesi/generated/assets.gen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class WeatherWidget extends StatelessWidget {
   const WeatherWidget({super.key});
@@ -7,64 +10,81 @@ class WeatherWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 100,
       width: MediaQuery.sizeOf(context).width,
-      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
       decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border(
-          top: BorderSide(
-            color: DumlupinarColors.tintColor,
-            width: 0.8,
-          ),
-          bottom: BorderSide(
-            color: DumlupinarColors.tintColor,
-            width: 0.8,
-          ),
+        image: DecorationImage(
+          fit: BoxFit.cover,
+          opacity: 0.5,
+          image: AssetImage(Assets.images.weather.path),
         ),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: List.generate(4 * 2 - 1, (index) {
-          if (index.isOdd) {
-            return SizedBox(
-              width: 1,
-              height: 50,
-              child: VerticalDivider(
-                width: 1,
-                color: DumlupinarColors.backgroundColor,
-              ),
-            );
-          }
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+      child: Column(
+        children: [
+          Text("kutahya hava durumu"),
+          SizedBox(height: 10),
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                WeatherItem(),
+                WeatherItem(),
+                WeatherItem(),
+                WeatherItem(),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class WeatherItem extends StatelessWidget {
+  const WeatherItem({
+    super.key,
+    // required this.data,
+  });
+
+  // final Map<String, DayWeather> data;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Text("2025-02-02"),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text(
-                "DOLAR",
-                style: TextStyle(fontSize: 12),
-              ),
-              Text(
-                "35.8440",
-                style: TextStyle(fontSize: 12),
-              ),
-              Container(
-                height: 20,
-                padding: EdgeInsets.symmetric(horizontal: 5),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: DumlupinarColors.greenColor,
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                child: Text(
-                  "0.12%",
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: DumlupinarColors.whiteColor,
+              Row(
+                children: [
+                  SvgPicture.asset(
+                    Assets.icons.up.path,
+                    height: 10,
+                    alignment: Alignment.center,
+                    width: 10,
                   ),
-                ),
+                  Text("16"),
+                ],
+              ),
+              Row(
+                children: [
+                  SvgPicture.asset(
+                    Assets.icons.down.path,
+                    height: 10,
+                    alignment: Alignment.center,
+                    width: 10,
+                  ),
+                  Text("2"),
+                ],
               ),
             ],
-          );
-        }),
+          ),
+          Text("Güneşli"),
+        ],
       ),
     );
   }

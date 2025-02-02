@@ -15,17 +15,38 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/authors.svg
+  SvgGenImage get authors => const SvgGenImage('assets/icons/authors.svg');
+
+  /// File path: assets/icons/authors_filled.svg
+  SvgGenImage get authorsFilled =>
+      const SvgGenImage('assets/icons/authors_filled.svg');
+
+  /// File path: assets/icons/down.svg
+  SvgGenImage get down => const SvgGenImage('assets/icons/down.svg');
+
+  /// File path: assets/icons/filled_home.svg
+  SvgGenImage get filledHome =>
+      const SvgGenImage('assets/icons/filled_home.svg');
+
+  /// File path: assets/icons/home.svg
+  SvgGenImage get home => const SvgGenImage('assets/icons/home.svg');
+
   /// File path: assets/icons/menus.svg
   SvgGenImage get menus => const SvgGenImage('assets/icons/menus.svg');
 
   /// File path: assets/icons/search.svg
   SvgGenImage get search => const SvgGenImage('assets/icons/search.svg');
 
+  /// File path: assets/icons/up.svg
+  SvgGenImage get up => const SvgGenImage('assets/icons/up.svg');
+
   /// File path: assets/icons/user.svg
   SvgGenImage get user => const SvgGenImage('assets/icons/user.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [menus, search, user];
+  List<SvgGenImage> get values =>
+      [authors, authorsFilled, down, filledHome, home, menus, search, up, user];
 }
 
 class $AssetsImagesGen {
@@ -35,8 +56,11 @@ class $AssetsImagesGen {
   AssetGenImage get dumlupinarGazetesi =>
       const AssetGenImage('assets/images/dumlupinar_gazetesi.png');
 
+  /// File path: assets/images/weather.jpg
+  AssetGenImage get weather => const AssetGenImage('assets/images/weather.jpg');
+
   /// List of all assets
-  List<AssetGenImage> get values => [dumlupinarGazetesi];
+  List<AssetGenImage> get values => [dumlupinarGazetesi, weather];
 }
 
 class Assets {

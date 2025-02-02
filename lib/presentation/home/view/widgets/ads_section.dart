@@ -8,25 +8,37 @@ class AdsSection extends GetView<HomePageController> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Advertisement>? adverts = controller.advertisements?.data?.adverts;
+    return FutureBuilder(
+        future: controller.getAdvertisements(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return LinearProgressIndicator();
+          }
 
-    if (adverts == null) return SizedBox.shrink();
+          if (snapshot.hasError) return SizedBox.shrink();
 
-    return SizedBox(
-      height: 100,
-      width: MediaQuery.sizeOf(context).width,
-      child: CarouselView(
-        onTap: (index) {},
-        backgroundColor: Colors.transparent,
-        itemExtent: MediaQuery.sizeOf(context).width,
-        children: adverts
-            .map(
-              (ad) => Image.network(
-                ad.images!.mobile!,
+          if (snapshot.hasData) {
+            final List<Advertisement> adverts = controller.advertisements?.data?.adverts ?? [];
+
+            return SizedBox(
+              height: 100,
+              width: MediaQuery.sizeOf(context).width,
+              child: CarouselView(
+                onTap: (index) {},
+                backgroundColor: Colors.transparent,
+                itemExtent: MediaQuery.sizeOf(context).width,
+                children: adverts
+                    .map(
+                      (ad) => Image.network(
+                        ad.images!.mobile!,
+                      ),
+                    )
+                    .toList(),
               ),
-            )
-            .toList(),
-      ),
-    );
+            );
+          }
+
+          return SizedBox.shrink();
+        });
   }
 }

@@ -11,5 +11,6 @@ abstract class  LocaleKeys {
   static const official_ads = 'official_ads';
   static const error_connect = 'error_connect';
   static const poor_connection = 'poor_connection';
+  static const press_back_to_exit = 'press_back_to_exit';
 
 }

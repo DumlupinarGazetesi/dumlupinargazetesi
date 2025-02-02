@@ -12,36 +12,52 @@ class HomePageController extends GetxController {
   final DumlupinarGazetesiApiClient _apiClient = DumlupinarGazetesiApiClient(AppHelper.dioConfig.dio);
 
   Advertisements? advertisements;
-  WeatherData? weatherData;
+  WeatherData? kutahyaWeatherData;
   List<Entry>? topCovers;
   ExchangeData? exchange;
   List<Entry>? featuredCovers;
   List<Entry>? simpleCovers;
 
+  final Rx<bool> isGettingExchange = false.obs;
+  final Rx<bool> isGettingKutahyaWeather = false.obs;
+  final Rx<bool> isGettingTopCovers = false.obs;
+
+  @override
+  void onInit() {
+    getExchangeData();
+    getKutahyaWeather();
+    super.onInit();
+  }
+
   set changeTab(String tab) => selectedTab(tab);
 
-  Future getAdvertisements() async {
+  Future<dynamic> getAdvertisements() async {
     final result = await _apiClient.getAdvertisement('ana-1');
 
     if (result.response.statusCode == 200) {
       advertisements = result.data;
+      return advertisements;
     } else {
       AppHelper.log.log(Level.error, result.response.statusMessage);
     }
   }
 
   Future getKutahyaWeather() async {
+    isGettingKutahyaWeather(true);
     final result = await _apiClient.getWeather("43");
 
     if (result.response.statusCode == 200) {
-      weatherData = result.data.weatherData;
+      kutahyaWeatherData = result.data.weatherData;
     } else {
       AppHelper.log.log(Level.error, result.response.statusMessage);
     }
+    isGettingKutahyaWeather(false);
   }
 
   // top covers
   Future getTopCovers() async {
+    isGettingTopCovers(true);
+
     final result = await _apiClient.getSectionData("top_cover");
 
     if (result.response.statusCode == 200) {
@@ -49,15 +65,20 @@ class HomePageController extends GetxController {
     } else {
       AppHelper.log.log(Level.error, result.response.statusMessage);
     }
+    isGettingTopCovers(false);
   }
 
   Future getExchangeData() async {
+    isGettingExchange(true);
+
     final result = await _apiClient.getExchange();
     if (result.response.statusCode == 200) {
       exchange = result.data;
     } else {
       AppHelper.log.log(Level.error, result.response.statusMessage);
     }
+
+    isGettingExchange(false);
   }
 
   // featured covers

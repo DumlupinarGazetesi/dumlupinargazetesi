@@ -28,9 +28,12 @@ class DioConfig {
   addInterceptors() {
     _dio.interceptors.clear();
 
+    RequestInterceptors requestInterceptors = RequestInterceptors();
+
     _dio.interceptors.addAll([
       prettyDioLogger,
       dioCacheInterceptor,
+      requestInterceptors,
     ]);
   }
 
