@@ -1,4 +1,6 @@
 import 'package:dumlupinargazetesi/generals/constants/colors.dart';
+import 'package:dumlupinargazetesi/generals/widgets/entries_carousel.dart';
+import 'package:dumlupinargazetesi/generals/widgets/weather_widget.dart';
 import 'package:dumlupinargazetesi/presentation/home/controller/homepage_controller.dart';
 import 'package:dumlupinargazetesi/presentation/home/view/widgets/ads_section.dart';
 import 'package:dumlupinargazetesi/presentation/home/view/widgets/appbar.dart';
@@ -13,7 +15,6 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-
   final HomePageController _controller = Get.find();
 
   @override
@@ -21,7 +22,6 @@ class _HomepageState extends State<Homepage> {
     _controller.getAdvertisements();
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +32,15 @@ class _HomepageState extends State<Homepage> {
           HomePageAppbar(),
           const SizedBox(height: 10),
           AdsSection(),
-
-
+          const SizedBox(height: 10),
+          WeatherWidget(),
+          EntriesCarousel(),
           Expanded(
-            child: TextButton(onPressed: (){
-              _controller.getAdvertisements();
-            }, child: Text("push me")),
+            child: TextButton(
+                onPressed: () {
+                  _controller.getAdvertisements();
+                },
+                child: Text("push me")),
           )
         ],
       ),
