@@ -9,7 +9,7 @@ part of 'city_model.dart';
 City _$CityFromJson(Map<String, dynamic> json) => City(
       title: json['key'] as String,
       value: json['value'] as String,
-      provinceId: (json['province_id'] as num).toInt(),
+      provinceId: json['province_id'] as String?,
     );
 
 Map<String, dynamic> _$CityToJson(City instance) => <String, dynamic>{

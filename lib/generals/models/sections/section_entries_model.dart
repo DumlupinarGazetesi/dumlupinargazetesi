@@ -5,12 +5,12 @@ import 'package:json_annotation/json_annotation.dart';
 part 'section_entries_model.g.dart';
 
 @JsonSerializable()
-class Sections extends Status {
+class SectionsResponse extends Status {
   @JsonKey(name: 'data', readValue: _readSectionEntries)
   final List<Entry> entries;
-  Sections({required this.entries, required super.error});
+  SectionsResponse({required this.entries, required super.error});
 
-  factory Sections.fromJson(Map<String, dynamic> json) => _$SectionsFromJson(json);
+  factory SectionsResponse.fromJson(Map<String, dynamic> json) => _$SectionsResponseFromJson(json);
 }
 
 Object? _readSectionEntries(json, field) => json['data']['entries'];

@@ -86,12 +86,12 @@ class _DumlupinarGazetesiApiClient implements DumlupinarGazetesiApiClient {
   }
 
   @override
-  Future<HttpResponse<Sections>> getSectionData(String id) async {
+  Future<HttpResponse<SectionsResponse>> getSectionData(String id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<HttpResponse<Sections>>(Options(
+    final _options = _setStreamType<HttpResponse<SectionsResponse>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -108,9 +108,9 @@ class _DumlupinarGazetesiApiClient implements DumlupinarGazetesiApiClient {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late Sections _value;
+    late SectionsResponse _value;
     try {
-      _value = Sections.fromJson(_result.data!);
+      _value = SectionsResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

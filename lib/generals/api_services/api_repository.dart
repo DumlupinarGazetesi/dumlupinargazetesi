@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:dumlupinargazetesi/generals/constants/api_addresses.dart';
 import 'package:dumlupinargazetesi/generals/models/categories/category_entries.dart';
 import 'package:dumlupinargazetesi/generals/models/models.dart';
+import 'package:dumlupinargazetesi/generals/models/sections/section_entries_model.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'api_repository.g.dart';
@@ -17,7 +18,7 @@ abstract class DumlupinarGazetesiApiClient {
   Future<HttpResponse> getEntryComments(@Path("entryId") String entryId);
 
   @GET("${DumlupinarApiAddresses.sections}/{section}")
-  Future<HttpResponse<Sections>> getSectionData(@Path("section") String id);
+  Future<HttpResponse<SectionsResponse>> getSectionData(@Path("section") String id);
 
   @GET("${DumlupinarApiAddresses.entryData}{entryId}")
   Future<HttpResponse<EntryDetail>> getEntryData(@Path("entryId") String entryId);

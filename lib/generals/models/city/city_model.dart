@@ -8,7 +8,7 @@ class City {
   final String value;
 
   @JsonKey(name: "province_id")
-  final int provinceId;
+  final String? provinceId;
 
   City({required this.title, required this.value, required this.provinceId});
 

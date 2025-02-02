@@ -38,12 +38,13 @@ Future<void> main() async {
   await initializeHiveCache();
 
   runApp(
-      // EasyLocalization(
-      //   supportedLocales: SupportedLocalesProperties.supportedLocales,
-      //   path: SupportedLocalesProperties.localeFilesPath,
-      //   fallbackLocale: SupportedLocalesProperties.fallbackLocale,
-      //   assetLoader: const CodegenLoader(),
-      //   child: const App(),
-      // ),
-      const App());
+    // EasyLocalization(
+    //   supportedLocales: SupportedLocalesProperties.supportedLocales,
+    //   path: SupportedLocalesProperties.localeFilesPath,
+    //   fallbackLocale: SupportedLocalesProperties.fallbackLocale,
+    //   assetLoader: const CodegenLoader(),
+    //   child: const App(),
+    // ),
+    const App(),
+  );
 }

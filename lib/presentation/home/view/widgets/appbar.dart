@@ -33,8 +33,10 @@ class HomePageAppbar extends GetView<HomePageController> {
         _buildMenuLogo(),
         Row(
           children: [
-            _buildIconButton(Assets.icons.search.path, () {}),
-            _buildIconButton(Assets.icons.user.path, () {}),
+            _buildIconButton(Assets.icons.search.path, () {
+              print("search");
+            }),
+            // _buildIconButton(Assets.icons.user.path, () {}),
           ],
         ),
       ],
