@@ -1,4 +1,4 @@
-import 'package:dumlupinargazetesi/generals/constants/colors.dart';
+import 'package:dumlupinargazetesi/generals/themes/colors.dart';
 import 'package:dumlupinargazetesi/generals/routers/route_pages.dart';
 import 'package:dumlupinargazetesi/generals/utils/app_bindings.dart';
 import 'package:dumlupinargazetesi/presentation/splash_screen/splash_screen.dart';

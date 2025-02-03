@@ -1,4 +1,4 @@
-import 'package:dumlupinargazetesi/generals/constants/colors.dart';
+import 'package:dumlupinargazetesi/generals/themes/colors.dart';
 import 'package:dumlupinargazetesi/generals/models/exchange/exchange_response_model.dart';
 import 'package:dumlupinargazetesi/presentation/home/controller/homepage_controller.dart';
 import 'package:flutter/material.dart';

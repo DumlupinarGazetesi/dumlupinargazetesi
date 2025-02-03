@@ -1,4 +1,4 @@
-import 'package:dumlupinargazetesi/generals/constants/colors.dart';
+import 'package:dumlupinargazetesi/generals/themes/colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

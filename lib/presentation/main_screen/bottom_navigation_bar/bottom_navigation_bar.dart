@@ -1,4 +1,4 @@
-import 'package:dumlupinargazetesi/generals/constants/colors.dart';
+import 'package:dumlupinargazetesi/generals/themes/colors.dart';
 import 'package:dumlupinargazetesi/generals/constants/generated_translations/locale_keys.g.dart';
 import 'package:dumlupinargazetesi/generated/assets.gen.dart';
 import 'package:dumlupinargazetesi/presentation/main_screen/controllers/bottom_navigation_bar_controller.dart';

@@ -1,4 +1,4 @@
-import 'package:dumlupinargazetesi/generals/constants/colors.dart';
+import 'package:dumlupinargazetesi/generals/themes/colors.dart';
 import 'package:dumlupinargazetesi/generals/widgets/animated_splash_screen.dart';
 import 'package:dumlupinargazetesi/generated/assets.gen.dart';
 import 'package:dumlupinargazetesi/presentation/main_screen/view/main_screen.dart';

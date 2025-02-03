@@ -7,6 +7,9 @@ import 'package:dio_cache_interceptor_hive_store/dio_cache_interceptor_hive_stor
 import 'generals/models/city/city_model.dart';
 import 'generals/utils/json_file_reader.dart';
 
+import 'package:intl/date_symbol_data_local.dart';
+
+
 late final HiveCacheStore hiveCacheStore;
 final List<City> cities = [];
 
@@ -34,6 +37,8 @@ Future<void> main() async {
   await readCities();
 
   await GetStorage.init();
+
+  await initializeDateFormatting('tr_TR', null);
 
   await initializeHiveCache();
 

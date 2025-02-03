@@ -21,11 +21,16 @@ class HomePageController extends GetxController {
   final Rx<bool> isGettingExchange = false.obs;
   final Rx<bool> isGettingKutahyaWeather = false.obs;
   final Rx<bool> isGettingTopCovers = false.obs;
+  final Rx<bool> isGettingFeaturedCovers = false.obs;
+  final Rx<bool> isGettingCovers = false.obs;
 
   @override
   void onInit() {
     getExchangeData();
     getKutahyaWeather();
+    getTopCovers();
+    getFeaturedCovers();
+    getSimpleCovers();
     super.onInit();
   }
 
@@ -83,6 +88,7 @@ class HomePageController extends GetxController {
 
   // featured covers
   Future getFeaturedCovers() async {
+    isGettingFeaturedCovers(true);
     final result = await _apiClient.getSectionData("featured");
 
     if (result.response.statusCode == 200) {
@@ -90,10 +96,12 @@ class HomePageController extends GetxController {
     } else {
       AppHelper.log.log(Level.error, result.response.statusMessage);
     }
+    isGettingFeaturedCovers(false);
   }
 
   // covers
   Future getSimpleCovers() async {
+    isGettingCovers(true);
     final result = await _apiClient.getSectionData("cover");
 
     if (result.response.statusCode == 200) {
@@ -101,5 +109,6 @@ class HomePageController extends GetxController {
     } else {
       AppHelper.log.log(Level.error, result.response.statusMessage);
     }
+    isGettingCovers(false);
   }
 }

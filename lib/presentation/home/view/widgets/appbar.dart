@@ -1,7 +1,7 @@
 import 'package:dumlupinargazetesi/presentation/home/controller/homepage_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:dumlupinargazetesi/generals/constants/colors.dart';
+import 'package:dumlupinargazetesi/generals/themes/colors.dart';
 import 'package:dumlupinargazetesi/generated/assets.gen.dart';
 import 'package:dumlupinargazetesi/presentation/home/view/homepage_tabs.dart';
 import 'package:flutter_svg/flutter_svg.dart';
