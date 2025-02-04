@@ -7,35 +7,36 @@ class IndicatorsWidget extends StatelessWidget {
     this.indicatorActiveColor,
     this.indicatorDeActiveColor,
     this.sliderDuration = const Duration(milliseconds: 100),
-    required this.properties,
-    required this.actualIndex,
+    required this.selectedIndex,
+    required this.itemCount,
   });
 
-  final int actualIndex;
+  final int selectedIndex;
   final Duration sliderDuration;
   final Color? indicatorActiveColor;
   final Color? indicatorDeActiveColor;
-  final List properties;
+  final int itemCount;
 
   @override
   Widget build(BuildContext context) {
     return Wrap(
       alignment: WrapAlignment.center,
-      children: properties.asMap().entries.map((entire) {
-        return AnimatedContainer(
+      children: List.generate(
+        itemCount,
+        (index) => AnimatedContainer(
           margin: const EdgeInsets.symmetric(horizontal: 8),
           duration: sliderDuration,
-          width: entire.key != actualIndex ? 6 : 24,
+          width: index != selectedIndex ? 6 : 24,
           height: 6,
           curve: Curves.linear,
           decoration: BoxDecoration(
-            color: (entire.key != actualIndex)
+            color: (index != selectedIndex)
                 ? indicatorDeActiveColor ?? DumlupinarColors.grayColor
                 : indicatorActiveColor ?? DumlupinarColors.primaryColor,
             borderRadius: BorderRadius.circular(50),
           ),
-        );
-      }).toList(),
+        ),
+      ),
     );
   }
 }

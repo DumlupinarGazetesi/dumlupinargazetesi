@@ -11,4 +11,13 @@ class DateUtil {
       return "Geçersiz Tarih"; // Handle errors gracefully
     }
   }
+
+  static String formatTurkishDateWithYear(String dateString) {
+    try {
+      DateTime date = DateTime.parse(dateString);
+      return DateFormat("dd MMM yyyy - HH:mm", "tr_TR").format(date);
+    } catch (e) {
+      return "Geçersiz Tarih"; // Handle errors gracefully
+    }
+  }
 }

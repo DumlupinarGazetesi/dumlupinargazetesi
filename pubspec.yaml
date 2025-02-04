@@ -59,6 +59,7 @@ dependencies:
   logger: ^2.5.0
   weather_animation: ^1.1.2
   carousel_slider: ^5.0.0
+  flutter_widget_from_html: ^0.15.3
 
 
 dev_dependencies:
