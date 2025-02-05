@@ -1,6 +1,7 @@
 import 'package:dumlupinargazetesi/generals/models/weather/weather_response_model.dart';
 import 'package:dumlupinargazetesi/generals/themes/shadows.dart';
 import 'package:dumlupinargazetesi/generals/utils/date_converter.dart';
+import 'package:dumlupinargazetesi/generals/widgets/marquee_text.dart';
 import 'package:dumlupinargazetesi/generated/assets.gen.dart';
 import 'package:dumlupinargazetesi/presentation/home/controller/homepage_controller.dart';
 import 'package:flutter/material.dart';
@@ -95,14 +96,16 @@ class WeatherItem extends StatelessWidget {
                 TemperatureRow(iconPath: Assets.icons.down.path, value: weather.min!),
               ],
             ),
-            //todo: add marquee
             Expanded(
-              child: Text(
-                weather.conditions ?? '',
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 12,
-                  shadows: DumlupinarShadows.textShadow,
+              child: SizedBox(
+                height: 25,
+                child: AutoMarqueeText(
+                  text: weather.conditions ?? '',
+                  pauseAfterRound: Duration(seconds: 3),
+                  style: const TextStyle(
+                    fontSize: 12,
+                    shadows: DumlupinarShadows.textShadow,
+                  ),
                 ),
               ),
             ),

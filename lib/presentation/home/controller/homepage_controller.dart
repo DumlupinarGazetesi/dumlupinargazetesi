@@ -43,12 +43,13 @@ class HomePageController extends GetxController with GetTickerProviderStateMixin
 
   @override
   void onInit() {
+    getCategories();
     getExchangeData();
     getKutahyaWeather();
     getTopCovers();
     getFeaturedCovers();
     getSimpleCovers();
-    getCategories();
+
     super.onInit();
   }
 

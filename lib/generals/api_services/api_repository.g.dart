@@ -331,13 +331,13 @@ class _DumlupinarGazetesiApiClient implements DumlupinarGazetesiApiClient {
   }
 
   @override
-  Future<SearchResponse> search(Map<String, dynamic> body) async {
+  Future<HttpResponse<SearchResponse>> search(Map<String, dynamic> body) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body);
-    final _options = _setStreamType<SearchResponse>(Options(
+    final _options = _setStreamType<HttpResponse<SearchResponse>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -361,7 +361,8 @@ class _DumlupinarGazetesiApiClient implements DumlupinarGazetesiApiClient {
       errorLogger?.logError(e, s, _options);
       rethrow;
     }
-    return _value;
+    final httpResponse = HttpResponse(_value, _result);
+    return httpResponse;
   }
 
   @override

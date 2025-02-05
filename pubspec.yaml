@@ -60,6 +60,10 @@ dependencies:
   weather_animation: ^1.1.2
   carousel_slider: ^5.0.0
   flutter_widget_from_html: ^0.15.3
+  marquee:
+    git:
+      url: https://github.com/hamid-yousefi/marquee.git
+      ref: master
 
 
 dev_dependencies:
@@ -76,6 +80,7 @@ dev_dependencies:
   build_runner: ^2.4.14
   json_serializable: ^6.9.3
   flutter_gen_runner: ^5.8.0
+
 
 
 # For information on the generic Dart part of this file, see the

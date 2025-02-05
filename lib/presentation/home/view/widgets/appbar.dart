@@ -1,5 +1,7 @@
 import 'package:dumlupinargazetesi/generals/models/categories/category.dart';
+import 'package:dumlupinargazetesi/generals/utils/navigation.dart';
 import 'package:dumlupinargazetesi/presentation/home/controller/homepage_controller.dart';
+import 'package:dumlupinargazetesi/presentation/search_page/view/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dumlupinargazetesi/generals/themes/colors.dart';
@@ -18,7 +20,7 @@ class HomePageAppbar extends GetView<HomePageController> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _buildTopBar(),
+            _buildTopBar(context),
             _buildTabs(),
           ],
         ),
@@ -26,16 +28,19 @@ class HomePageAppbar extends GetView<HomePageController> {
     );
   }
 
-  Widget _buildTopBar() {
+  Widget _buildTopBar(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         _buildMenuLogo(),
         Row(
           children: [
-            _buildIconButton(Assets.icons.search.path, () {
-              print("search");
-            }),
+            _buildIconButton(
+              Assets.icons.search.path,
+              () {
+                Navigation.bottomToTop(context, SearchScreen());
+              },
+            ),
             // _buildIconButton(Assets.icons.user.path, () {}),
           ],
         ),

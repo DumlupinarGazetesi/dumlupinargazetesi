@@ -9,6 +9,6 @@ class DumlupinarColors {
   static Color blackColor = Colors.black;
   static Color tintColor = const Color.fromARGB(78, 205, 205, 209);
   static Color grayColor = const Color(0xffB0BEC5);
-
+  static Color darkGrayColor =  Color(0xFF303030);
   static const greyColor = Color.fromARGB(255, 201, 201, 201);
 }
