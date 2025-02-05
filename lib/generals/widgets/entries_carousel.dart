@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dumlupinargazetesi/generals/models/categories/category.dart';
 import 'package:dumlupinargazetesi/generals/models/entry/entry_model.dart';
 import 'package:dumlupinargazetesi/generals/themes/colors.dart';
 import 'package:dumlupinargazetesi/generals/utils/navigation.dart';

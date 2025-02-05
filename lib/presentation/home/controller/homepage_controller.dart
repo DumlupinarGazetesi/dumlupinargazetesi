@@ -3,11 +3,21 @@ import 'package:dumlupinargazetesi/generals/models/entry/entry_model.dart';
 import 'package:dumlupinargazetesi/generals/models/models.dart';
 import 'package:dumlupinargazetesi/generals/utils/app_helper.dart';
 import 'package:dumlupinargazetesi/presentation/home/view/homepage_tabs.dart';
+import 'package:dumlupinargazetesi/presentation/home/view/screens/homepage_main_tab.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
-class HomePageController extends GetxController {
-  RxString selectedTab = HomePageTabs.tabs.first.obs;
+class HomePageController extends GetxController with GetTickerProviderStateMixin {
+  Rx<Category> selectedCategory = anasayfa.obs;
+
+  static final Category anasayfa = Category(
+    id: 0,
+    title: 'Anasayfa',
+    tag: 'Anasayfa',
+    parentId: 0,
+    total: 0,
+  );
 
   final DumlupinarGazetesiApiClient _apiClient = DumlupinarGazetesiApiClient(AppHelper.dioConfig.dio);
 
@@ -17,12 +27,19 @@ class HomePageController extends GetxController {
   ExchangeData? exchange;
   List<Entry>? featuredCovers;
   List<Entry>? simpleCovers;
+  List<Category>? categories;
 
   final Rx<bool> isGettingExchange = false.obs;
   final Rx<bool> isGettingKutahyaWeather = false.obs;
   final Rx<bool> isGettingTopCovers = false.obs;
   final Rx<bool> isGettingFeaturedCovers = false.obs;
   final Rx<bool> isGettingCovers = false.obs;
+  final Rx<bool> isGettingCategories = false.obs;
+  final Rx<bool> isGettingCatEntries = false.obs;
+
+  late TabController tabController;
+
+  List<Widget> homeScreenTabs = [];
 
   @override
   void onInit() {
@@ -31,10 +48,17 @@ class HomePageController extends GetxController {
     getTopCovers();
     getFeaturedCovers();
     getSimpleCovers();
+    getCategories();
     super.onInit();
   }
 
-  set changeTab(String tab) => selectedTab(tab);
+  set changeTab(Category tab) {
+    selectedCategory(tab);
+    tabController.animateTo(
+      categories!.indexOf(tab),
+      curve: Curves.bounceIn,
+    );
+  }
 
   Future<dynamic> getAdvertisements() async {
     final result = await _apiClient.getAdvertisement('ana-1');
@@ -110,5 +134,40 @@ class HomePageController extends GetxController {
       AppHelper.log.log(Level.error, result.response.statusMessage);
     }
     isGettingCovers(false);
+  }
+
+  Future getCategories() async {
+    isGettingCategories(true);
+    final result = await _apiClient.getCategories();
+
+    if (result.response.statusCode == 200) {
+      List<Category> cats = result.data.categories;
+      cats.removeWhere((item) => item.total == 0);
+
+      categories = [
+        ...[
+          Category(
+            id: 0,
+            title: 'Anasayfa',
+            tag: 'Anasayfa',
+            parentId: 0,
+            total: 0,
+          )
+        ],
+        ...cats
+      ];
+
+      tabController = TabController(length: categories!.length, vsync: this);
+
+      homeScreenTabs.add(HomeScreenMainTab());
+
+      for (Category cat in categories?.sublist(1) ?? []) {
+        homeScreenTabs.add(HomeScreenOtherTab(category: cat));
+      }
+    } else {
+      AppHelper.log.log(Level.error, result.response.statusMessage);
+    }
+
+    isGettingCategories(false);
   }
 }

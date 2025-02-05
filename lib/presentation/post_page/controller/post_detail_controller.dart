@@ -22,10 +22,16 @@ class PostDetailController extends GetxController {
     super.onInit();
   }
 
+  @override
+  void dispose() {
+    entryDetail = null;
+    super.dispose();
+  }
+
   Future getEntryDetail() async {
     isGettingEntryDetail(true);
 
-    final result = await _apiClient.getEntryData(entry.srcId.toString());
+    final result = await _apiClient.getEntryData("${entry.srcId ?? entry.id}");
 
     if (result.response.statusCode == 200) {
       entryDetail = result.data;
@@ -39,7 +45,7 @@ class PostDetailController extends GetxController {
   Future getAuthorInfo() async {}
 
   Future getEntryComments() async {
-    final result = await _apiClient.getEntryComments(entry.srcId.toString());
+    final result = await _apiClient.getEntryComments("${entry.srcId ?? entry.id}");
 
     if (result.response.statusCode == 200) {
       // do something

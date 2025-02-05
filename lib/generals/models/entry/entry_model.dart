@@ -1,3 +1,5 @@
+import 'package:dumlupinargazetesi/generals/models/authors/author.dart';
+import 'package:dumlupinargazetesi/generals/models/categories/category.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'entry_model.g.dart';
 
@@ -42,7 +44,7 @@ class Entry {
   @JsonKey(name: "src_type")
   final String? srcType;
   final int? nth;
-
+  final Author? author;
   final String? type;
 
   Entry({
@@ -67,6 +69,7 @@ class Entry {
     this.srcType,
     this.type,
     this.customImage,
+    this.author,
   });
 
   factory Entry.fromJson(Map<String, dynamic> json) => _$EntryFromJson(json);
@@ -129,19 +132,4 @@ class Default {
   factory Default.fromJson(Map<String, dynamic> json) => _$DefaultFromJson(json);
 
   Map<String, dynamic> toJson() => _$DefaultToJson(this);
-}
-
-@JsonSerializable()
-class Category {
-  final int? id;
-  final String? title;
-
-  Category({
-    this.id,
-    this.title,
-  });
-
-  factory Category.fromJson(Map<String, dynamic> json) => _$CategoryFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CategoryToJson(this);
 }

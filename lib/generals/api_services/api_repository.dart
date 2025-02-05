@@ -31,7 +31,7 @@ abstract class DumlupinarGazetesiApiClient {
   );
 
   @GET(DumlupinarApiAddresses.categories)
-  Future<CategoriesResponse> getCategories();
+  Future<HttpResponse<CategoriesResponse>> getCategories();
 
   @GET(DumlupinarApiAddresses.exchange)
   Future<HttpResponse<ExchangeData>> getExchange();

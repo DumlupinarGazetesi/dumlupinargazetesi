@@ -20,11 +20,20 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
 
   @override
   void initState() {
-    _controller = Get.put<PostDetailController>(
+    _controller= Get.put<PostDetailController>(
       PostDetailController(entry: widget.entryDetail),
-      permanent: false,
+      tag: '${widget.entryDetail.title}',
     );
+
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    if (Get.isRegistered<PostDetailController>(tag: '${widget.entryDetail.title}')) {
+      Get.delete<PostDetailController>(tag: '${widget.entryDetail.title}');
+    }
+    super.dispose();
   }
 
   @override
@@ -117,9 +126,9 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
   }
 
   Widget _buildImage(BuildContext context) {
-    return widget.entryDetail.imageDefault != null
+    return widget.entryDetail.image?.url != null
         ? Image.network(
-            widget.entryDetail.imageDefault!,
+            widget.entryDetail.image!.url!,
             fit: BoxFit.fitWidth,
             width: MediaQuery.sizeOf(context).width,
           )

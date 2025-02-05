@@ -1,9 +1,9 @@
+import 'package:dumlupinargazetesi/generals/models/categories/category.dart';
 import 'package:dumlupinargazetesi/presentation/home/controller/homepage_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dumlupinargazetesi/generals/themes/colors.dart';
 import 'package:dumlupinargazetesi/generated/assets.gen.dart';
-import 'package:dumlupinargazetesi/presentation/home/view/homepage_tabs.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class HomePageAppbar extends GetView<HomePageController> {
@@ -78,23 +78,28 @@ class HomePageAppbar extends GetView<HomePageController> {
   }
 
   Widget _buildTabs() {
-    return Obx(() {
-      debugPrint(controller.selectedTab.value);
-      return SizedBox(
-        height: 40,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: HomePageTabs.tabs.length,
-          itemBuilder: (context, index) => _buildTabItem(index),
-        ),
-      );
-    });
+    final List<Category>? cats = controller.categories;
+    return Obx(
+      () {
+        debugPrint("++++ ${controller.selectedCategory.value}");
+        return SizedBox(
+          height: 40,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: cats?.length,
+            itemBuilder: (context, index) => _buildTabItem(index),
+          ),
+        );
+      },
+    );
   }
 
   Widget _buildTabItem(int index) {
-    final bool isSelected = controller.selectedTab.value == HomePageTabs.tabs[index];
+    Category? item = controller.categories?[index];
+
+    final bool isSelected = controller.selectedCategory.value.id == item?.id;
     return GestureDetector(
-      onTap: () => controller.changeTab = HomePageTabs.tabs[index],
+      onTap: () => controller.changeTab = item!,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 5),
         alignment: Alignment.center,
@@ -109,7 +114,7 @@ class HomePageAppbar extends GetView<HomePageController> {
           ),
         ),
         child: Text(
-          HomePageTabs.tabs[index],
+          item?.title ?? '',
           style: TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w700,

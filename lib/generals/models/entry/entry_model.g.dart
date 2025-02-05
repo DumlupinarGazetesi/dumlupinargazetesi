@@ -41,6 +41,9 @@ Entry _$EntryFromJson(Map<String, dynamic> json) => Entry(
       srcType: json['src_type'] as String?,
       type: json['type'] as String?,
       customImage: json['customImage'] as bool?,
+      author: json['author'] == null
+          ? null
+          : Author.fromJson(json['author'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$EntryToJson(Entry instance) => <String, dynamic>{
@@ -64,6 +67,7 @@ Map<String, dynamic> _$EntryToJson(Entry instance) => <String, dynamic>{
       'src_id': instance.srcId,
       'src_type': instance.srcType,
       'nth': instance.nth,
+      'author': instance.author,
       'type': instance.type,
     };
 
@@ -113,14 +117,4 @@ Default _$DefaultFromJson(Map<String, dynamic> json) => Default(
 
 Map<String, dynamic> _$DefaultToJson(Default instance) => <String, dynamic>{
       'images': instance.images,
-    };
-
-Category _$CategoryFromJson(Map<String, dynamic> json) => Category(
-      id: (json['id'] as num?)?.toInt(),
-      title: json['title'] as String?,
-    );
-
-Map<String, dynamic> _$CategoryToJson(Category instance) => <String, dynamic>{
-      'id': instance.id,
-      'title': instance.title,
     };

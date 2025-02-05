@@ -14,7 +14,7 @@ class MainScreen extends GetView<BottomNavigationBarController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: DumlupinarColors.backgroundColor,
-      bottomNavigationBar: const MarkabuBottomNavigationBar(),
+      bottomNavigationBar: const DumlupinarBottomNavigationBar(),
       body: PopScope(
         onPopInvokedWithResult: (didPop, dynamic) {
           if (!didPop) {

@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'normal_bottom_navigation_bar_icon.dart';
 
-class MarkabuBottomNavigationBar extends GetView<BottomNavigationBarController> {
-  const MarkabuBottomNavigationBar({super.key});
+class DumlupinarBottomNavigationBar extends GetView<BottomNavigationBarController> {
+  const DumlupinarBottomNavigationBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class MarkabuBottomNavigationBar extends GetView<BottomNavigationBarController> 
             controller.changePage = 0;
           },
           child: NormalBottomNavigationBarIcon(
-            text: LocaleKeys.home,
+            text: LocaleKeys.home.tr,
             iconPath: Assets.icons.home.path,
             filledIconPath: Assets.icons.filledHome.path,
             selected: controller.currentPage == 0,
@@ -59,7 +59,7 @@ class MarkabuBottomNavigationBar extends GetView<BottomNavigationBarController> 
         InkWell(
           onTap: () => controller.changePage = 1,
           child: NormalBottomNavigationBarIcon(
-            text: LocaleKeys.authors,
+            text: LocaleKeys.authors.tr,
             filledIconPath: Assets.icons.authorsFilled.path,
             iconPath: Assets.icons.authors.path,
             selected: controller.currentPage == 1,

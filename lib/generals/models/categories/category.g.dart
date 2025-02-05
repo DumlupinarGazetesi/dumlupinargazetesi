@@ -8,10 +8,10 @@ part of 'category.dart';
 
 Category _$CategoryFromJson(Map<String, dynamic> json) => Category(
       id: (json['id'] as num).toInt(),
-      tag: json['tag'] as String,
-      parentId: (json['parentId'] as num).toInt(),
-      title: json['title'] as String,
-      total: (json['total'] as num).toInt(),
+      tag: json['tag'] as String?,
+      parentId: (json['parentId'] as num?)?.toInt(),
+      title: json['title'] as String?,
+      total: (json['total'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$CategoryToJson(Category instance) => <String, dynamic>{

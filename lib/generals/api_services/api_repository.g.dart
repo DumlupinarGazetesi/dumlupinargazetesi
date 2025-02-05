@@ -195,12 +195,12 @@ class _DumlupinarGazetesiApiClient implements DumlupinarGazetesiApiClient {
   }
 
   @override
-  Future<CategoriesResponse> getCategories() async {
+  Future<HttpResponse<CategoriesResponse>> getCategories() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<CategoriesResponse>(Options(
+    final _options = _setStreamType<HttpResponse<CategoriesResponse>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -224,7 +224,8 @@ class _DumlupinarGazetesiApiClient implements DumlupinarGazetesiApiClient {
       errorLogger?.logError(e, s, _options);
       rethrow;
     }
-    return _value;
+    final httpResponse = HttpResponse(_value, _result);
+    return httpResponse;
   }
 
   @override

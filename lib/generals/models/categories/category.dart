@@ -4,10 +4,10 @@ part 'category.g.dart';
 @JsonSerializable()
 class Category {
   final int id;
-  final String tag;
-  final int parentId;
-  final String title;
-  final int total;
+  final String? tag;
+  final int? parentId;
+  final String? title;
+  final int? total;
 
   Category({
     required this.id,

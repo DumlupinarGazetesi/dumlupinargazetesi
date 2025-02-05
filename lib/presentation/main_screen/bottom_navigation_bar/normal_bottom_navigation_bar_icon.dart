@@ -42,7 +42,7 @@ class NormalBottomNavigationBarIcon extends StatelessWidget {
           // Expanded(
           //   child:
           Text(
-            tr(text),
+            text,
             textAlign: TextAlign.center,
             style: GoogleFonts.roboto(
               fontWeight: FontWeight.bold,
