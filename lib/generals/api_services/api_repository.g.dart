@@ -331,9 +331,13 @@ class _DumlupinarGazetesiApiClient implements DumlupinarGazetesiApiClient {
   }
 
   @override
-  Future<HttpResponse<SearchResponse>> search(Map<String, dynamic> body) async {
+  Future<HttpResponse<SearchResponse>> search(
+    Map<String, dynamic> body,
+    Map<String, dynamic> queryParams,
+  ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.addAll(queryParams);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body);

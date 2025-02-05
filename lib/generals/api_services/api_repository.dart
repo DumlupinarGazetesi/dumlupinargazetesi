@@ -43,7 +43,10 @@ abstract class DumlupinarGazetesiApiClient {
   Future<HttpResponse<Advertisements>> getAdvertisement(@Path("advertId") String advertId);
 
   @POST(DumlupinarApiAddresses.search)
-  Future<HttpResponse<SearchResponse>> search(@Body() Map<String, dynamic> body);
+  Future<HttpResponse<SearchResponse>> search(
+    @Body() Map<String, dynamic> body,
+    @Queries() Map<String, dynamic> queryParams,
+  );
 
   @POST(DumlupinarApiAddresses.stats)
   Future<HttpResponse> sendStats(@Body() Map<String, dynamic> body);

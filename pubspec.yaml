@@ -64,6 +64,7 @@ dependencies:
     git:
       url: https://github.com/hamid-yousefi/marquee.git
       ref: master
+  share_plus: ^10.1.4
 
 
 dev_dependencies:

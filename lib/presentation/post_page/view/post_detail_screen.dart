@@ -5,6 +5,7 @@ import 'package:dumlupinargazetesi/presentation/post_page/controller/post_detail
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 
 class PostDetailScreen extends StatefulWidget {
   const PostDetailScreen({super.key, required this.entryDetail});
@@ -20,7 +21,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
 
   @override
   void initState() {
-    _controller= Get.put<PostDetailController>(
+    _controller = Get.put<PostDetailController>(
       PostDetailController(entry: widget.entryDetail),
       tag: '${widget.entryDetail.title}',
     );
@@ -90,7 +91,9 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           _buildIconButton(Icons.arrow_back_ios, "Geri", () => Navigator.pop(context)),
-          _buildIconButton(Icons.share, "Paylaş", () {}),
+          _buildIconButton(Icons.share, "Paylaş", () {
+            Share.shareUri(Uri.parse(_controller.entryDetail!.entry!.url!));
+          }),
         ],
       ),
     );
@@ -126,9 +129,13 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
   }
 
   Widget _buildImage(BuildContext context) {
-    return widget.entryDetail.image?.url != null
+
+    print("_controller.entry.image?.url ${_controller.entry.image?.url}");
+
+    String? image  = _controller.entryDetail?.entry?.image?.url;
+    return image != null
         ? Image.network(
-            widget.entryDetail.image!.url!,
+            image,
             fit: BoxFit.fitWidth,
             width: MediaQuery.sizeOf(context).width,
           )

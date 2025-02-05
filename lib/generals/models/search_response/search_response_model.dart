@@ -6,17 +6,18 @@ part 'search_response_model.g.dart';
 
 @JsonSerializable()
 class SearchResponse extends Status {
-  @JsonKey(name: "total_items")
+  @JsonKey(name: "total_items",readValue: readValue)
   final String? totalItems;
 
-  @JsonKey(name: 'total_pages')
+  @JsonKey(name: 'total_pages', readValue: readValue)
   final int? totalPages;
 
+  @JsonKey(name: 'entries', readValue: readValue)
   final List<EntryDetail>? entries;
 
   SearchResponse({required super.error, this.entries, this.totalItems, this.totalPages});
 
-
-  factory SearchResponse.fromJson(Map<String,dynamic> json)=> _$SearchResponseFromJson(json);
-
+  factory SearchResponse.fromJson(Map<String, dynamic> json) => _$SearchResponseFromJson(json);
 }
+
+readValue(json,field)=> json['data'][field];

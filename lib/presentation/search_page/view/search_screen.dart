@@ -20,7 +20,7 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: DumlupinarColors.backgroundColor,
+        backgroundColor: DumlupinarColors.whiteColor,
         body: Column(
           children: [
             Container(
@@ -80,7 +80,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-                      controller.searchTxtController.clear();
+                      controller.resetData();
                       Navigator.of(context).pop();
                     },
                     child: Text(
@@ -101,17 +101,20 @@ class _SearchScreenState extends State<SearchScreen> {
                   return Center(child: const CircularProgressIndicator());
                 }
 
+                // if (controller.searchResult.isEmpty) {
+                //   return Center(child: Text('no data'));
+                // }
+
                 return SingleChildScrollView(
                   controller: controller.scrollController,
                   padding: const EdgeInsets.all(15),
-                  child: controller.searchResult.isNotEmpty
-                      ? Column(
-                          children: List.generate(
-                            controller.searchResult.length,
-                            (index) => SearchResItem(entry: controller.searchResult[index].entry!),
-                          ),
-                        )
-                      : Center(child: Text('no data')),
+                  child: Column(
+                    spacing: 10,
+                    children: List.generate(
+                      controller.searchResult.length,
+                      (index) => SearchResItem(entry: controller.searchResult[index].entry!),
+                    ),
+                  ),
                 );
               }),
             )

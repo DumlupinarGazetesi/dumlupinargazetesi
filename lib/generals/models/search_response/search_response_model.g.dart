@@ -9,11 +9,11 @@ part of 'search_response_model.dart';
 SearchResponse _$SearchResponseFromJson(Map<String, dynamic> json) =>
     SearchResponse(
       error: json['error'] as bool,
-      entries: (json['entries'] as List<dynamic>?)
+      entries: (readValue(json, 'entries') as List<dynamic>?)
           ?.map((e) => EntryDetail.fromJson(e as Map<String, dynamic>))
           .toList(),
-      totalItems: json['total_items'] as String?,
-      totalPages: (json['total_pages'] as num?)?.toInt(),
+      totalItems: readValue(json, 'total_items') as String?,
+      totalPages: (readValue(json, 'total_pages') as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$SearchResponseToJson(SearchResponse instance) =>
