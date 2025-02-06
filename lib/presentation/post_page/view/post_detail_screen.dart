@@ -1,6 +1,7 @@
 import 'package:dumlupinargazetesi/generals/models/entry/entry_model.dart';
 import 'package:dumlupinargazetesi/generals/themes/colors.dart';
 import 'package:dumlupinargazetesi/generals/utils/date_converter.dart';
+import 'package:dumlupinargazetesi/generals/widgets/secondary_app_bar.dart';
 import 'package:dumlupinargazetesi/presentation/post_page/controller/post_detail_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
@@ -53,7 +54,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
 
             return Column(
               children: [
-                _buildAppBar(context),
+                SecondaryAppBar(shareData: _controller.entryDetail!.entry!.url!),
                 Expanded(
                   child: SingleChildScrollView(
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
@@ -79,41 +80,6 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
     );
   }
 
-  Widget _buildAppBar(BuildContext context) {
-    return Container(
-      height: 50,
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      decoration: BoxDecoration(
-        color: DumlupinarColors.whiteColor,
-        border: Border(bottom: BorderSide(color: DumlupinarColors.tintColor)),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          _buildIconButton(Icons.arrow_back_ios, "Geri", () => Navigator.pop(context)),
-          _buildIconButton(Icons.share, "Paylaş", () {
-            Share.shareUri(Uri.parse(_controller.entryDetail!.entry!.url!));
-          }),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildIconButton(IconData icon, String text, VoidCallback onTap) {
-    return TextButton.icon(
-      onPressed: onTap,
-      icon: Icon(icon, size: 16, color: DumlupinarColors.blackColor),
-      label: Text(
-        text,
-        style: TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.w500,
-          color: DumlupinarColors.blackColor,
-        ),
-      ),
-    );
-  }
-
   Widget _buildTitle() {
     return Text(
       "Haber Başlığı: ${widget.entryDetail.title ?? ''}",
@@ -129,10 +95,9 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
   }
 
   Widget _buildImage(BuildContext context) {
-
     print("_controller.entry.image?.url ${_controller.entry.image?.url}");
 
-    String? image  = _controller.entryDetail?.entry?.image?.url;
+    String? image = _controller.entryDetail?.entry?.image?.url;
     return image != null
         ? Image.network(
             image,

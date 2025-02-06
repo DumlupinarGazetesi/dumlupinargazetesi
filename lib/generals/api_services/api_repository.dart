@@ -58,8 +58,8 @@ abstract class DumlupinarGazetesiApiClient {
   );
 
   @GET("${DumlupinarApiAddresses.authors}/{authorId}/entries")
-  Future<HttpResponse<List<EntryDetail>>> getAuthorEntries(
-    @Path("authorId") String authorId,
+  Future<HttpResponse<SectionsResponse>> getAuthorEntries(
+    @Path("authorId") int authorId,
     @Query("page") int page,
     @Query("take") int take,
   );

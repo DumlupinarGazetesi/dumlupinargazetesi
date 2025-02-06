@@ -436,8 +436,8 @@ class _DumlupinarGazetesiApiClient implements DumlupinarGazetesiApiClient {
   }
 
   @override
-  Future<HttpResponse<List<EntryDetail>>> getAuthorEntries(
-    String authorId,
+  Future<HttpResponse<SectionsResponse>> getAuthorEntries(
+    int authorId,
     int page,
     int take,
   ) async {
@@ -448,7 +448,7 @@ class _DumlupinarGazetesiApiClient implements DumlupinarGazetesiApiClient {
     };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<HttpResponse<List<EntryDetail>>>(Options(
+    final _options = _setStreamType<HttpResponse<SectionsResponse>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -464,12 +464,10 @@ class _DumlupinarGazetesiApiClient implements DumlupinarGazetesiApiClient {
           _dio.options.baseUrl,
           baseUrl,
         )));
-    final _result = await _dio.fetch<List<dynamic>>(_options);
-    late List<EntryDetail> _value;
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late SectionsResponse _value;
     try {
-      _value = _result.data!
-          .map((dynamic i) => EntryDetail.fromJson(i as Map<String, dynamic>))
-          .toList();
+      _value = SectionsResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

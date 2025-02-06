@@ -56,11 +56,14 @@ class $AssetsImagesGen {
   AssetGenImage get dumlupinarGazetesi =>
       const AssetGenImage('assets/images/dumlupinar_gazetesi.png');
 
+  /// File path: assets/images/user.png
+  AssetGenImage get user => const AssetGenImage('assets/images/user.png');
+
   /// File path: assets/images/weather.jpg
   AssetGenImage get weather => const AssetGenImage('assets/images/weather.jpg');
 
   /// List of all assets
-  List<AssetGenImage> get values => [dumlupinarGazetesi, weather];
+  List<AssetGenImage> get values => [dumlupinarGazetesi, user, weather];
 }
 
 class Assets {
