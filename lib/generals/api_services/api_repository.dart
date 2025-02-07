@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:dumlupinargazetesi/generals/constants/api_addresses.dart';
 import 'package:dumlupinargazetesi/generals/models/categories/category_entries.dart';
+import 'package:dumlupinargazetesi/generals/models/entry/comments.dart';
 import 'package:dumlupinargazetesi/generals/models/models.dart';
 import 'package:dumlupinargazetesi/generals/models/sections/section_entries_model.dart';
 import 'package:retrofit/retrofit.dart';
@@ -15,7 +16,7 @@ abstract class DumlupinarGazetesiApiClient {
   Future<HttpResponse<Authors>> getAuthors();
 
   @GET("${DumlupinarApiAddresses.entryData}{entryId}/comments")
-  Future<HttpResponse> getEntryComments(@Path("entryId") String entryId);
+  Future<HttpResponse<Comments>> getEntryComments(@Path("entryId") String entryId);
 
   @GET("${DumlupinarApiAddresses.sections}/{section}")
   Future<HttpResponse<SectionsResponse>> getSectionData(@Path("section") String id);
@@ -69,4 +70,21 @@ abstract class DumlupinarGazetesiApiClient {
 
   @GET(DumlupinarApiAddresses.companyInfo)
   Future<HttpResponse<InfoResponse>> getCompanyInfo();
+
+  @POST(DumlupinarApiAddresses.stats)
+  Future<HttpResponse> sendEntryRead(
+    @Body() Map<String, dynamic> data,
+  );
+
+  @POST("${DumlupinarApiAddresses.entryData}{entryId}/comment")
+  Future<HttpResponse> submitComment(
+    @Path("entryId") int commentId,
+    @Body() Map<String, dynamic> data,
+  );
+
+  @POST("${DumlupinarApiAddresses.likeDislikeComment}/{commentId}")
+  Future<HttpResponse> likeDislikeComment(
+    @Path("commentId") int commentId,
+    @Body() Map<String, dynamic> data,
+  );
 }

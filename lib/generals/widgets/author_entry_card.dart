@@ -12,44 +12,44 @@ class AuthorEntryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: 10,
-          children: [
-            Text(
-              entry.title ?? '',
-              style: TextStyle(
-                color: DumlupinarColors.blackColor,
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
+    return InkWell(
+      onTap: () {
+        Navigation.rightToLeft(
+          context,
+          PostDetailScreen(entryDetail: entry),
+        );
+      },
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: 10,
+            children: [
+              Text(
+                entry.title ?? '',
+                style: TextStyle(
+                  color: DumlupinarColors.blackColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
-            ),
-            Text(
-              DateUtil.formatTurkishDateWithDay(entry.publishedAt!),
-              style: TextStyle(
-                fontSize: 12,
-                color: DumlupinarColors.grayColor,
-              ),
-            )
-          ],
-        ),
-        IconButton(
-          onPressed: () {
-            Navigation.rightToLeft(
-              context,
-              PostDetailScreen(entryDetail: entry),
-            );
-          },
-          icon: Icon(
-            Icons.arrow_forward_ios,
-            color: DumlupinarColors.blackColor,
+              Text(
+                DateUtil.formatTurkishDateWithDay(entry.publishedAt!),
+                style: TextStyle(
+                  fontSize: 12,
+                  color: DumlupinarColors.grayColor,
+                ),
+              )
+            ],
           ),
-        )
-      ],
+        Icon(
+              Icons.arrow_forward_ios,
+              color: DumlupinarColors.blackColor,
+            ),
+        ],
+      ),
     );
   }
 }

@@ -11,52 +11,58 @@ class HomeScreenMainTab extends GetView<HomePageController> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      child: Column(
-        children: [
-          AdsSection(),
-          const SizedBox(height: 10),
-          WeatherWidget(),
-          const SizedBox(height: 10),
-          Obx(() {
-            if (controller.isGettingCovers.isTrue) {
-              return const Center(child: CircularProgressIndicator());
-            }
+    return RefreshIndicator(
+      onRefresh: () async {
+        controller.getInitialData();
+        Future.value(true);
+      },
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        child: Column(
+          children: [
+            AdsSection(),
+            const SizedBox(height: 10),
+            WeatherWidget(),
+            const SizedBox(height: 10),
+            Obx(() {
+              if (controller.isGettingCovers.isTrue) {
+                return const Center(child: CircularProgressIndicator());
+              }
 
-            if (controller.simpleCovers == null || controller.simpleCovers!.isEmpty) {
-              return const Center(child: Text('No data'));
-            }
+              if (controller.simpleCovers == null || controller.simpleCovers!.isEmpty) {
+                return const Center(child: Text('No data'));
+              }
 
-            return EntriesCarousel(entries: controller.simpleCovers);
-          }),
-          const SizedBox(height: 10),
-          ExchangeWidget(),
-          const SizedBox(height: 10),
-          Obx(() {
-            if (controller.isGettingFeaturedCovers.isTrue) {
-              return const Center(child: CircularProgressIndicator());
-            }
+              return EntriesCarousel(entries: controller.simpleCovers);
+            }),
+            const SizedBox(height: 10),
+            ExchangeWidget(),
+            const SizedBox(height: 10),
+            Obx(() {
+              if (controller.isGettingFeaturedCovers.isTrue) {
+                return const Center(child: CircularProgressIndicator());
+              }
 
-            if (controller.featuredCovers == null || controller.featuredCovers!.isEmpty) {
-              return const Center(child: Text('No data'));
-            }
+              if (controller.featuredCovers == null || controller.featuredCovers!.isEmpty) {
+                return const Center(child: Text('No data'));
+              }
 
-            return EntriesCarousel(entries: controller.featuredCovers);
-          }),
-          const SizedBox(height: 10),
-          Obx(() {
-            if (controller.isGettingTopCovers.isTrue) {
-              return const Center(child: CircularProgressIndicator());
-            }
+              return EntriesCarousel(entries: controller.featuredCovers);
+            }),
+            const SizedBox(height: 10),
+            Obx(() {
+              if (controller.isGettingTopCovers.isTrue) {
+                return const Center(child: CircularProgressIndicator());
+              }
 
-            if (controller.topCovers == null || controller.topCovers!.isEmpty) {
-              return const Center(child: Text('No data'));
-            }
+              if (controller.topCovers == null || controller.topCovers!.isEmpty) {
+                return const Center(child: Text('No data'));
+              }
 
-            return EntriesCarousel(entries: controller.topCovers);
-          }),
-        ],
+              return EntriesCarousel(entries: controller.topCovers);
+            }),
+          ],
+        ),
       ),
     );
   }

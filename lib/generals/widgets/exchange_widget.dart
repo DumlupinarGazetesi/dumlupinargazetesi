@@ -56,7 +56,7 @@ class ExchangeWidget extends GetView<HomePageController> {
                     return Padding(
                       padding: EdgeInsets.symmetric(horizontal: 8), // Space between items
                       child: ExchangeDetail(
-                        title: items[dataIndex].key,
+                        title: items[dataIndex].key == 'gold' ? "Altın" : items[dataIndex].key ,
                         priceData: items[dataIndex].value,
                       ),
                     );
@@ -83,6 +83,7 @@ class ExchangeDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [

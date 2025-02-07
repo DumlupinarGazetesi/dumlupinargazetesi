@@ -1,7 +1,9 @@
 import 'package:dumlupinargazetesi/generals/models/authors/author.dart';
 import 'package:dumlupinargazetesi/generals/themes/colors.dart';
+import 'package:dumlupinargazetesi/generals/utils/app_helper.dart';
 import 'package:dumlupinargazetesi/generals/widgets/author_entry_card.dart';
 import 'package:dumlupinargazetesi/generals/widgets/secondary_app_bar.dart';
+import 'package:dumlupinargazetesi/generated/assets.gen.dart';
 import 'package:dumlupinargazetesi/presentation/authors/controller/authors_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,12 +28,20 @@ class _AuthorEntriesScreenState extends State<AuthorEntriesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String? firstName = widget.author.firstName;
+    String? lastName = widget.author.lastName;
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: DumlupinarColors.backgroundColor,
         body: Column(
           children: [
-            SecondaryAppBar(shareData: ''),
+            SecondaryAppBar(
+              shareData: "https://dumlupinargazetesi.com/yazar/"
+                  "${AppHelper.convertTurkishCharacters(firstName)}"
+                  "-"
+                  "${AppHelper.convertTurkishCharacters(lastName)}",
+            ),
             Expanded(
               child: Obx(() {
                 if (_controller.loadingAuthorEntries.isTrue) {
@@ -68,11 +78,19 @@ class _AuthorEntriesScreenState extends State<AuthorEntriesScreen> {
                             ),
                             ClipRRect(
                               borderRadius: BorderRadius.circular(75),
-                              child: Image.network(
-                                widget.author.avatar!,
-                                height: 150,
-                                width: 150,
-                              ),
+                              child: widget.author.avatar != null
+                                  ? Image.network(
+                                      widget.author.avatar!,
+                                      height: 150,
+                                      width: 150,
+                                    )
+                                  : Image.asset(
+                                      height: 100,
+                                      width: 100,
+                                      Assets.images.user.path,
+                                      color: DumlupinarColors.whiteColor,
+                                      alignment: Alignment.center,
+                                    ),
                             ),
                             Align(
                               alignment: Alignment.bottomCenter,

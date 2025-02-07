@@ -12,7 +12,11 @@ class AdsSection extends GetView<HomePageController> {
         future: controller.getAdvertisements(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return LinearProgressIndicator();
+            return SizedBox(
+              height: 100,
+              width: MediaQuery.sizeOf(context).width,
+              child: Center(child: CircularProgressIndicator()),
+            );
           }
 
           if (snapshot.hasError) return SizedBox.shrink();

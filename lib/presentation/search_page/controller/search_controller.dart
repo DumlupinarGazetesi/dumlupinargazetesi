@@ -41,8 +41,8 @@ class SearchEntryController extends GetxController {
 
     isLoadingMoreCategoryEntries = true;
 
-    // final query = {"query": searchTxtController.text};
-    final query = {"query": "Türkiye ve Dünya Üzerinden"};
+    final query = {"query": searchTxtController.text};
+    // final query = {"query": "Türkiye ve Dünya Üzerinden"};
 
     final res = await _apiClient.search(query, {"page": page, "take": take});
 

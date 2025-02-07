@@ -35,7 +35,7 @@ class DateUtil {
       return "Dün, $time"; // Yesterday
     } else {
       String year = dateTime.year == now.year ? '' : '${dateTime.year}, ';
-      return "$year$month $time"; // Example: "Sub 3, 05:45" or "Sub 3 2024, 05:45"
+      return "$year$month, $time"; // Example: "Sub 3, 05:45" or "Sub 3 2024, 05:45"
     }
   }
 

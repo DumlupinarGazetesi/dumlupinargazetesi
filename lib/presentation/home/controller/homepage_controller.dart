@@ -36,6 +36,7 @@ class HomePageController extends GetxController with GetTickerProviderStateMixin
   final Rx<bool> isGettingCovers = false.obs;
   final Rx<bool> isGettingCategories = false.obs;
   final Rx<bool> isGettingCatEntries = false.obs;
+  final Rx<bool> isGettingAds = false.obs;
 
   late TabController tabController;
 
@@ -44,13 +45,19 @@ class HomePageController extends GetxController with GetTickerProviderStateMixin
   @override
   void onInit() {
     getCategories();
+    getInitialData();
+
+    super.onInit();
+  }
+
+  getInitialData() {
+    getAdvertisements();
+
     getExchangeData();
     getKutahyaWeather();
     getTopCovers();
     getFeaturedCovers();
     getSimpleCovers();
-
-    super.onInit();
   }
 
   set changeTab(Category tab) {
@@ -62,6 +69,10 @@ class HomePageController extends GetxController with GetTickerProviderStateMixin
   }
 
   Future<dynamic> getAdvertisements() async {
+    isGettingAds(true);
+
+    if (advertisements != null) return advertisements;
+
     final result = await _apiClient.getAdvertisement('ana-1');
 
     if (result.response.statusCode == 200) {
@@ -70,6 +81,7 @@ class HomePageController extends GetxController with GetTickerProviderStateMixin
     } else {
       AppHelper.log.log(Level.error, result.response.statusMessage);
     }
+    isGettingAds(false);
   }
 
   Future getKutahyaWeather() async {

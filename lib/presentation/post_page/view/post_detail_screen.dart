@@ -1,12 +1,13 @@
+import 'package:dumlupinargazetesi/generals/models/authors/author.dart';
 import 'package:dumlupinargazetesi/generals/models/entry/entry_model.dart';
 import 'package:dumlupinargazetesi/generals/themes/colors.dart';
 import 'package:dumlupinargazetesi/generals/utils/date_converter.dart';
 import 'package:dumlupinargazetesi/generals/widgets/secondary_app_bar.dart';
+import 'package:dumlupinargazetesi/generated/assets.gen.dart';
 import 'package:dumlupinargazetesi/presentation/post_page/controller/post_detail_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
-import 'package:share_plus/share_plus.dart';
 
 class PostDetailScreen extends StatefulWidget {
   const PostDetailScreen({super.key, required this.entryDetail});
@@ -95,8 +96,6 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
   }
 
   Widget _buildImage(BuildContext context) {
-    print("_controller.entry.image?.url ${_controller.entry.image?.url}");
-
     String? image = _controller.entryDetail?.entry?.image?.url;
     return image != null
         ? Image.network(
@@ -108,32 +107,52 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
   }
 
   Widget _buildAuthorInfo() {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        const CircleAvatar(
-          maxRadius: 15,
-          backgroundColor: Colors.black12,
-        ),
-        const SizedBox(width: 10),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              "Author Name",
-              style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
+    Author? author = _controller.entryDetail?.entry?.author;
+
+    if (author == null) return SizedBox();
+
+    return SizedBox(
+      height: 50,
+      // width: 50,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(25),
+            child: Image.network(
+              author.avatar ?? '',
+              errorBuilder: (context, e, st) {
+                return Image.asset(
+                  Assets.images.user.path,
+                  color: DumlupinarColors.grayColor,
+                );
+              },
             ),
-            Text(
-              DateUtil.formatTurkishDateWithYear(widget.entryDetail.createdAt?.toString() ?? ''),
-              style: TextStyle(
-                fontSize: 10,
-                fontWeight: FontWeight.w500,
-                color: DumlupinarColors.grayColor,
+          ),
+          const SizedBox(width: 10),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                "${author.firstName} ${author.lastName}",
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
-            ),
-          ],
-        ),
-      ],
+              Text(
+                DateUtil.formatTurkishDateWithYear(widget.entryDetail.createdAt?.toString() ?? ''),
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                  color: DumlupinarColors.darkGrayColor,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 

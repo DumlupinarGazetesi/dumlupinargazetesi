@@ -31,4 +31,7 @@ class DumlupinarApiAddresses {
   static const advertisement = "/advert";
   static const weather = "/service/weather/";
   static const exchange = "/service/exchange";
+
+  static const comments = "/comments";
+  static const likeDislikeComment = "/comment";
 }
